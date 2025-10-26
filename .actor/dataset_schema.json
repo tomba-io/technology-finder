@@ -1,0 +1,127 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "type": "object",
+        "properties": {
+            "input_domain": {
+                "type": "string",
+                "description": "The original domain that was analyzed for technologies"
+            },
+            "technology_slug": {
+                "type": ["string", "null"],
+                "description": "Unique slug identifier for the technology"
+            },
+            "technology_name": {
+                "type": ["string", "null"],
+                "description": "Name of the technology detected"
+            },
+            "technology_icon": {
+                "type": ["string", "null"],
+                "description": "Icon filename for the technology"
+            },
+            "technology_website": {
+                "type": ["string", "null"],
+                "description": "Official website of the technology"
+            },
+            "category_id": {
+                "type": ["number", "null"],
+                "description": "ID of the technology category"
+            },
+            "category_slug": {
+                "type": ["string", "null"],
+                "description": "Slug of the technology category"
+            },
+            "category_name": {
+                "type": ["string", "null"],
+                "description": "Name of the technology category"
+            },
+            "source": {
+                "type": "string",
+                "description": "Source of the data (tomba_technology_finder)"
+            },
+            "error": {
+                "type": ["string", "null"],
+                "description": "Error message if the search failed"
+            }
+        },
+        "required": ["input_domain", "source"]
+    },
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": ["input_domain", "technology_name", "category_name", "technology_website", "technology_slug"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "input_domain": {
+                        "label": "Domain"
+                    },
+                    "technology_name": {
+                        "label": "Technology"
+                    },
+                    "category_name": {
+                        "label": "Category"
+                    },
+                    "technology_website": {
+                        "label": "Website"
+                    },
+                    "technology_slug": {
+                        "label": "Slug"
+                    }
+                }
+            }
+        },
+        "detailed": {
+            "title": "Detailed View",
+            "transformation": {
+                "fields": [
+                    "input_domain",
+                    "technology_slug",
+                    "technology_name",
+                    "technology_icon",
+                    "technology_website",
+                    "category_id",
+                    "category_slug",
+                    "category_name",
+                    "source",
+                    "error"
+                ]
+            },
+            "display": {
+                "component": "table"
+            }
+        },
+        "by_category": {
+            "title": "Technologies by Category",
+            "transformation": {
+                "fields": ["category_name", "technology_name", "input_domain", "technology_website"],
+                "filterBy": [
+                    {
+                        "field": "technology_name",
+                        "operator": "notEquals",
+                        "value": null
+                    }
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "category_name": {
+                        "label": "Category"
+                    },
+                    "technology_name": {
+                        "label": "Technology Name"
+                    },
+                    "input_domain": {
+                        "label": "Domain"
+                    },
+                    "technology_website": {
+                        "label": "Website"
+                    }
+                }
+            }
+        }
+    }
+}

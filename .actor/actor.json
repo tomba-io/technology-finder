@@ -1,0 +1,16 @@
+{
+    "actorSpecification": 1,
+    "name": "technology-finder",
+    "title": "Tomba Technology Finder",
+    "description": "Retrieve technologies used by a specific domain using the Tomba API.",
+    "version": "0.0",
+    "buildTag": "latest",
+    "meta": {
+        "templateId": "ts-empty"
+    },
+    "dockerfile": "../Dockerfile",
+    "input": "./input_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    }
+}
