@@ -1,6 +1,6 @@
 {
     "name": "technology-finder",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "type": "module",
     "description": "Retrieve technologies used by a specific domain using the Tomba API.",
     "engines": {
