@@ -1,0 +1,14 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Technology Finder Output",
+    "description": "Output from Tomba Technology Finder Actor - technologies and tools used by domains",
+    "type": "object",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Technology Results",
+            "description": "Detected technologies with categories and technical details",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
