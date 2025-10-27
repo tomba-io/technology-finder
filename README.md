@@ -216,7 +216,7 @@ Organized view grouping technologies by their main categories for easier analysi
 
 ## Keywords
 
-technology stack, tech finder, website technology, domain analysis, technology detection, competitive intelligence, tech stack analysis, software discovery, Tomba API, Apify actor, tech research, developer tools, website analysis, technology insights
+technology stack, tech finder, website technology, domain analysis, technology detection, competitive intelligence, tech stack analysis, software discovery, tech research, developer tools, website analysis, technology insights
 
 ## Support
 
