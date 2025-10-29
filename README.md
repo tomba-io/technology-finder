@@ -210,9 +210,44 @@ Organized view grouping technologies by their main categories for easier analysi
 
 ### Cost Considerations
 
-- Each domain technology analysis = 1 Tomba API request
+- Each domain analyzed = 1 Tomba API request
 - Monitor your Tomba usage dashboard
 - Consider Tomba's pricing tiers for volume usage
+
+## FAQ
+
+### General Questions
+
+**Q: What is technology detection?**
+A: Technology detection analyzes a website domain to identify the tools, frameworks, services, and technologies being used, including web technologies, analytics tools, marketing platforms, and infrastructure services.
+
+**Q: What types of technologies can be detected?**
+A: The service identifies web frameworks, CMS platforms, analytics tools, marketing automation, e-commerce platforms, CDN services, hosting providers, and many other technology categories.
+
+**Q: How accurate is technology detection?**
+A: Detection accuracy is typically 85-95% for commonly used technologies. Some technologies may be harder to detect if they're custom-built or configured to hide their signatures.
+
+### Technical Questions
+
+**Q: How many domains can I analyze at once?**
+A: You can process up to 1000 domains per run. For optimal performance, analyze 20-50 domains per batch.
+
+**Q: What domain formats should I use?**
+A: Use clean domain names like "stripe.com" or "example.org". Don't include protocols (http/https) or subdomains unless specifically needed.
+
+**Q: What if a domain uses custom or unknown technologies?**
+A: Custom or very new technologies might not be detected. The service focuses on widely-used, recognizable technology signatures.
+
+### Business Applications
+
+**Q: How can this help with sales targeting?**
+A: Technology stacks help qualify prospects, tailor sales messaging, identify integration opportunities, and understand technical sophistication levels.
+
+**Q: Is this useful for competitive analysis?**
+A: Yes! Analyze competitor technology choices to understand their strategies, identify trends, and find differentiation opportunities.
+
+**Q: Can I use this for partnership opportunities?**
+A: Absolutely! Identify companies using complementary technologies to find potential integration partners or customers.
 
 ## Keywords
 
