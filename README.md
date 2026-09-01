@@ -86,7 +86,7 @@ For each technology detected, you'll receive:
 
 ### Best Practices
 
-- **Domain Format**: Use clean domain names without protocols (e.g., 'example.com' not 'https://example.com')
+- **Domain Format**: Use clean domain names without protocols (e.g., 'example.com' )
 - **Batch Size**: Process 10-15 domains at a time for optimal performance
 - **Rate Limits**: The Actor automatically handles Tomba's 150 requests/minute limit
 - **Quality Results**: Use established websites for more comprehensive technology detection
@@ -197,8 +197,8 @@ Organized view grouping technologies by their main categories for easier analysi
 
 ### API Documentation
 
-- [Tomba API Docs](https://tomba.io/api) - Complete API reference
-- [Technology Finder Endpoint](https://docs.tomba.io/api/technology) - Specific technology documentation
+- [Tomba API Docs](https://docs.tomba.io/introduction) - Complete API reference
+- [Technology Finder Endpoint](https://docs.tomba.io/api/domain#technology) - Specific technology documentation
 - [Authentication Guide](https://app.tomba.io/api) - Get your API keys
 - [Pricing & Limits](https://tomba.io/pricing) - Understand rate limits and costs
 
