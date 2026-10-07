@@ -16,6 +16,10 @@ All notable changes to this project will be documented in this file. See [standa
 - Cross-run result cache (`useCache`, `cacheTtlHours`)
 - Resume after migration or restart
 - Each dataset item now includes `charged` and `cached`
+- Real-time API (Apify Standby mode): `GET /?domain=…` or `POST /` with the run input returns results as JSON, with an OpenAPI web server schema
+- Key-value store schema for the default store (`INPUT`, `TOMBA_STATE`)
+- `technology_description` and `categories` (all category names) in every row; `category_*` now read Tomba's categories array
+- Default memory set to 256 MB
 
 ### Dependencies
 

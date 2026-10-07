@@ -1,0 +1,119 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tomba Technology Finder API",
+        "version": "1.0.0",
+        "description": "Real-time API (Apify Standby mode). Detect the technologies used by websites. Each domain with technologies found costs $0.00312; domains with no technologies, errors and cached results are free."
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "summary": "Find technologies for one or more domains",
+                "description": "Without query parameters, returns a short usage note (also used as the readiness probe).",
+                "parameters": [
+                    {
+                        "name": "domain",
+                        "in": "query",
+                        "description": "Domain to analyze. Repeat the parameter or separate values with commas for several domains. URLs are cleaned up.",
+                        "required": false,
+                        "schema": { "type": "string" },
+                        "example": "stripe.com"
+                    },
+                    {
+                        "name": "domains",
+                        "in": "query",
+                        "description": "Alias of `domain`.",
+                        "required": false,
+                        "schema": { "type": "string" }
+                    },
+                    {
+                        "name": "maxResults",
+                        "in": "query",
+                        "description": "Maximum number of technology rows to return (default 50).",
+                        "required": false,
+                        "schema": { "type": "integer", "minimum": 1, "default": 50 }
+                    }
+                ],
+                "responses": {
+                    "200": { "$ref": "#/components/responses/Results" },
+                    "400": { "$ref": "#/components/responses/Error" },
+                    "402": { "$ref": "#/components/responses/Error" }
+                }
+            },
+            "post": {
+                "summary": "Find technologies using a JSON input",
+                "description": "Accepts the same JSON input as a normal Actor run.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "domains": {
+                                        "type": "array",
+                                        "items": { "type": "string" },
+                                        "example": ["stripe.com", "shopify.com"]
+                                    },
+                                    "maxResults": { "type": "integer", "minimum": 1, "default": 50 }
+                                },
+                                "required": ["domains"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "$ref": "#/components/responses/Results" },
+                    "400": { "$ref": "#/components/responses/Error" },
+                    "402": { "$ref": "#/components/responses/Error" }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "Results": {
+                "description": "Technology rows, in the same format as the dataset items.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "items": { "type": "array", "items": { "$ref": "#/components/schemas/Technology" } }
+                            }
+                        }
+                    }
+                }
+            },
+            "Error": {
+                "description": "Invalid input (400) or the run's max charge limit was reached (402).",
+                "content": {
+                    "application/json": {
+                        "schema": { "type": "object", "properties": { "error": { "type": "string" } } }
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "Technology": {
+                "type": "object",
+                "properties": {
+                    "input_domain": { "type": "string" },
+                    "technology_slug": { "type": "string" },
+                    "technology_name": { "type": "string", "nullable": true },
+                    "technology_icon": { "type": "string" },
+                    "technology_website": { "type": "string" },
+                    "technology_description": { "type": "string" },
+                    "category_id": { "type": "integer" },
+                    "category_slug": { "type": "string" },
+                    "category_name": { "type": "string" },
+                    "categories": { "type": "array", "items": { "type": "string" } },
+                    "source": { "type": "string" },
+                    "charged": { "type": "boolean" },
+                    "cached": { "type": "boolean" },
+                    "error": { "type": "string" }
+                }
+            }
+        }
+    }
+}
