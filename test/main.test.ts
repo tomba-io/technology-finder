@@ -3,7 +3,14 @@ import assert from 'node:assert/strict';
 import { after, afterEach, describe, it } from 'node:test';
 
 import type { MockHandler, MockServer } from './helpers.js';
-import { removeStorage, runActor, startMockTomba, startStandbyActor, totalCharges } from './helpers.js';
+import {
+    inputSchemaErrors,
+    removeStorage,
+    runActor,
+    startMockTomba,
+    startStandbyActor,
+    totalCharges,
+} from './helpers.js';
 
 const TECHS = [
     {
@@ -353,5 +360,16 @@ describe('technology-finder standby (real-time API)', () => {
         } finally {
             await actor.stop();
         }
+    });
+});
+
+describe('input schema', () => {
+    it('accepts multi-part domains, subdomains and URLs', () => {
+        assert.deepEqual(
+            inputSchemaErrors({
+                domains: ['bbc.co.uk', 'https://bbc.co.uk/', 'blog.stripe.com', 'https://www.Stripe.com/pricing'],
+            }),
+            [],
+        );
     });
 });

@@ -162,7 +162,7 @@ $0.00312 per domain with results ($3.12 per 1,000). Domains with no results, err
 Up to 1,000 per run, processed in parallel. There is no rate limit.
 
 **What domain format should I use?**
-Anything works: `stripe.com`, `www.stripe.com` or `https://stripe.com/pricing`. We clean it up and remove duplicates.
+Anything works: `stripe.com`, `bbc.co.uk`, subdomains like `blog.stripe.com`, `www.stripe.com` or `https://stripe.com/pricing`. We clean it up and remove duplicates.
 
 **What if my run is interrupted?**
 It picks up where it stopped. Domains already processed are not charged again.
