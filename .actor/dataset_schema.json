@@ -24,6 +24,10 @@
                 "type": ["string", "null"],
                 "description": "Official website of the technology"
             },
+            "technology_description": {
+                "type": ["string", "null"],
+                "description": "Short description of the technology"
+            },
             "category_id": {
                 "type": ["number", "null"],
                 "description": "ID of the technology category"
@@ -36,6 +40,13 @@
                 "type": ["string", "null"],
                 "description": "Name of the technology category"
             },
+            "categories": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "All categories of the technology"
+            },
             "source": {
                 "type": "string",
                 "description": "Source of the data (tomba_technology_finder)"
@@ -43,6 +54,14 @@
             "error": {
                 "type": ["string", "null"],
                 "description": "Error message if the search failed"
+            },
+            "charged": {
+                "type": "boolean",
+                "description": "Whether this request was charged (pay-per-event)"
+            },
+            "cached": {
+                "type": "boolean",
+                "description": "Whether the result came from the cache (free)"
             }
         },
         "required": ["input_domain", "source"]
@@ -83,11 +102,15 @@
                     "technology_name",
                     "technology_icon",
                     "technology_website",
+                    "technology_description",
                     "category_id",
                     "category_slug",
                     "category_name",
+                    "categories",
                     "source",
-                    "error"
+                    "error",
+                    "charged",
+                    "cached"
                 ]
             },
             "display": {

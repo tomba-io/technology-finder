@@ -1,100 +1,62 @@
-# Tomba Technology Finder Actor
+# Tomba Technology Finder
 
-[![Actor](https://img.shields.io/badge/Apify-Actor-blue)](https://apify.com/actors)
-[![Tomba API](https://img.shields.io/badge/Tomba-API-green)](https://tomba.io)
-[![Rate Limit](https://img.shields.io/badge/Rate%20Limit-150%2Fmin-orange)](https://tomba.io/api)
+[![Price](https://img.shields.io/badge/Price-%243.12%20per%201K%20domains-brightgreen)](#pricing)
+[![No signup](https://img.shields.io/badge/Tomba%20account-not%20needed-blue)](#quick-start)
+[![No rate limit](https://img.shields.io/badge/Rate%20limit-none-brightgreen)](#built-for-big-lists)
 
-A powerful Apify Actor that discovers and retrieves technologies used by specific domains using the **Tomba Technology Finder API**. Perfect for competitive analysis, tech stack research, and understanding the technology landscape of websites and companies.
+**See the tech stack behind any website in seconds.** Paste a list of domains and get every detected technology (frameworks, CMS, analytics, marketing tools, hosting, payments and more), organized by category and ready to export.
 
-## Key Features
+No Tomba account. No API key. No subscription. **You pay $0.00312 per domain, and only when we find something.**
 
-- **Technology Detection**: Identify technologies, frameworks, and tools used by websites
-- **Comprehensive Categories**: Discover analytics, CMS, frameworks, libraries, and more
-- **Confidence Scoring**: Get confidence levels for each technology detection
-- **Version Information**: Retrieve version details when available
-- **Pricing Intelligence**: Understand pricing models of detected technologies
-- **Bulk Processing**: Analyze multiple domains efficiently with rate limiting
-- **Rate Limited**: Respects Tomba's 150 requests per minute limit
-- **Rich Data Output**: Comprehensive technology profiles with metadata
-- **Built-in Error Handling**: Robust processing with comprehensive error reporting
+## Why teams choose this Actor
 
-## How it works
+- **Start in 30 seconds**: Open the Actor, paste your domains, click Start. Nothing to sign up for
+- **Pay only for results**: Domains with no detected technologies, errors and invalid inputs are free
+- **$3.12 per 1,000 domains**: No monthly plan, no credits that expire, no minimum spend
+- **Built for big lists**: No rate limit. Thousands of domains run in parallel
+- **Never pay twice**: Domains you looked up in the last 24 hours come back from cache for free
+- **Clean input, clean output**: Paste URLs or domains in any format; duplicates are removed automatically
+- **Export anywhere**: Download as CSV, Excel or JSON, or send results straight to your CRM with Apify integrations
 
-The Actor leverages Tomba's powerful Technology Finder API to analyze domains and detect their tech stack:
+## What you can do with it
 
-### Process Flow
+| Goal                      | How the tech stack helps                                                                      |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| **Qualify leads**         | Target companies that use (or don't use) a specific tool, like Shopify, HubSpot or Salesforce |
+| **Personalize outreach**  | Open with the tools your prospect already runs and how you fit in                             |
+| **Win competitive deals** | Find every company using a competitor's product                                               |
+| **Find partners**         | Spot companies running complementary technologies                                             |
+| **Research markets**      | Measure technology adoption across an industry or region                                      |
 
-1. **Authentication**: Connects to Tomba API using your credentials
-2. **Input Processing**: Accepts array of domains to analyze
-3. **Technology Discovery**: Uses Tomba's `list` method for each domain
-4. **Data Enrichment**: Extracts technology details, categories, and confidence scores
-5. **Rate Limiting**: Automatically handles 150 requests/minute limit
-6. **Data Storage**: Saves results to Apify dataset
+## Quick start
 
-### What You Get
+1. Click **Try for free**
+2. Paste your domains into **Domains** (for example `stripe.com`, `shopify.com`)
+3. Click **Start**, then download your results as CSV, Excel or JSON
 
-For each technology detected, you'll receive:
+That's it. No Tomba account or API key is needed.
 
-- **Technology Name**: The specific technology, framework, or tool
-- **Category**: Main classification (Analytics, CMS, Framework, etc.)
-- **Subcategory**: More specific classification
-- **Description**: What the technology does
-- **Confidence Score**: How certain the detection is
-- **Version**: Version information when available
-- **Pricing Model**: Free, Paid, Freemium, etc.
-- **Official Website**: Link to the technology's website
-- **Logo**: Technology logo URL
+## Input
 
-## Quick Start
-
-### Prerequisites
-
-1. **Tomba Account**: Sign up at [Tomba.io](https://app.tomba.io/api) to get your API credentials
-
-### Getting Your API Keys
-
-1. Visit [Tomba API Dashboard](https://app.tomba.io/api)
-2. Copy your **API Key** (starts with `ta_`)
-3. Copy your **Secret Key** (starts with `ts_`)
-
-## Input Configuration
-
-### Required Parameters
-
-| Parameter        | Type       | Description                                  |
-| ---------------- | ---------- | -------------------------------------------- |
-| `tombaApiKey`    | `string`   | Your Tomba API key (ta_xxxx)                 |
-| `tombaApiSecret` | `string`   | Your Tomba secret key (ts_xxxx)              |
-| `domains`        | `string[]` | Array of domains to analyze for technologies |
-
-### Optional Parameters
-
-| Parameter    | Type     | Default | Description                         |
-| ------------ | -------- | ------- | ----------------------------------- |
-| `maxResults` | `number` | `50`    | Maximum number of results to return |
-
-### Example Input
+| Field            | Required | Default | Description                                                                   |
+| ---------------- | -------- | ------- | ----------------------------------------------------------------------------- |
+| `domains`        | Yes      |         | Domains to analyze. URLs like `https://www.stripe.com/pricing` are cleaned up |
+| `maxResults`     | No       | `50`    | Maximum number of technology rows to return                                   |
+| `maxConcurrency` | No       | `10`    | How many domains to process at the same time (1–50)                           |
+| `maxRetries`     | No       | `3`     | How many times to retry a temporary failure (0–10)                            |
+| `useCache`       | No       | `true`  | Reuse results from your previous runs for free                                |
+| `cacheTtlHours`  | No       | `24`    | How long cached results stay valid (`0` turns the cache off)                  |
 
 ```json
 {
-    "tombaApiKey": "ta_xxxxxxxxxxxxxxxxxxxx",
-    "tombaApiSecret": "ts_xxxxxxxxxxxxxxxxxxxx",
     "domains": ["shopify.com", "github.com", "stripe.com"],
-    "maxResults": 100
+    "maxResults": 500
 }
 ```
 
-### Best Practices
+## Output
 
-- **Domain Format**: Use clean domain names without protocols (e.g., 'example.com' )
-- **Batch Size**: Process 10-15 domains at a time for optimal performance
-- **Rate Limits**: The Actor automatically handles Tomba's 150 requests/minute limit
-- **Quality Results**: Use established websites for more comprehensive technology detection
-- **Analysis Focus**: Pay attention to confidence scores for reliable technology identification
-
-## Output Data Structure
-
-The Actor returns comprehensive information for each technology detected:
+You get one row per detected technology:
 
 ```json
 {
@@ -103,169 +65,104 @@ The Actor returns comprehensive information for each technology detected:
     "technology_name": "webpack",
     "technology_icon": "webpack.svg",
     "technology_website": "https://webpack.js.org/",
+    "technology_description": "Webpack is an open-source JavaScript module bundler.",
     "category_id": 19,
     "category_slug": "miscellaneous",
     "category_name": "Miscellaneous",
-    "source": "tomba_technology_finder"
+    "categories": ["Miscellaneous"],
+    "source": "tomba_technology_finder",
+    "charged": true,
+    "cached": false
 }
 ```
 
-### Data Fields Explained
+| Field                    | Description                                                       |
+| ------------------------ | ----------------------------------------------------------------- |
+| `input_domain`           | The domain you submitted                                          |
+| `technology_name`        | Name of the detected technology                                   |
+| `technology_slug`        | Unique identifier of the technology                               |
+| `technology_icon`        | Icon file name of the technology                                  |
+| `technology_website`     | Official website of the technology                                |
+| `technology_description` | Short description of the technology                               |
+| `category_id`            | ID of the technology category                                     |
+| `category_slug`          | Slug of the technology category                                   |
+| `category_name`          | Main category, e.g. Analytics, Web servers, JavaScript frameworks |
+| `categories`             | All categories of the technology                                  |
+| `source`                 | Always `tomba_technology_finder`                                  |
+| `charged`                | `true` if this lookup was billed                                  |
+| `cached`                 | `true` if this result came from the cache (free)                  |
+| `error`                  | Why no technologies were returned, if applicable                  |
 
-- **input_domain**: The original domain that was analyzed
-- **technology_slug**: Unique slug identifier for the technology
-- **technology_name**: Name of the detected technology
-- **technology_icon**: Icon filename for the technology
-- **technology_website**: Official website of the technology
-- **category_id**: ID of the technology category
-- **category_slug**: Slug of the technology category
-- **category_name**: Name of the technology category (e.g., Analytics, Miscellaneous, JavaScript Libraries)
-- **source**: Data source identifier (tomba_technology_finder)
-- **error**: Error message if the analysis failed
+The dataset has three ready-made views: **Overview**, **Detailed** and **Technologies by Category**.
 
-## Use Cases
+## Pricing
 
-### Competitive Analysis
+**$0.00312 per domain ($3.12 per 1,000).** No subscription and no Tomba account needed.
 
-- **Tech Stack Intelligence**: Understand what technologies competitors are using
-- **Technology Trends**: Identify popular technologies in your industry
-- **Performance Analysis**: Compare technology choices with performance metrics
+You are only charged when Tomba returns a usable answer:
 
-### Business Development
+| What happens                                    | Charged |
+| ----------------------------------------------- | ------- |
+| Technologies found for the domain               | Yes     |
+| No technologies found for the domain            | No      |
+| Invalid domain or any other error               | No      |
+| Temporary failure (it is retried automatically) | No      |
+| Result served from the cache                    | No      |
 
-- **Partnership Opportunities**: Find companies using complementary technologies
-- **Customer Targeting**: Identify prospects using specific technology stacks
-- **Market Research**: Understand technology adoption patterns
+Every row shows `charged` and `cached`, so you always know what you paid for. To cap your spend, set **Maximum cost per run** in the run options: the Actor stops cleanly when the limit is reached.
 
-### Sales & Marketing
+## Built for big lists
 
-- **Lead Qualification**: Target companies using specific technologies
-- **Solution Positioning**: Tailor pitches based on existing tech stack
-- **Market Segmentation**: Group prospects by technology preferences
+- **No rate limit**: up to 50 domains are processed at the same time
+- **Automatic retries**: temporary failures are retried for you, and never billed
+- **Resumable**: if a run is interrupted, it continues where it stopped without charging you again
+- **Cache**: repeat lookups within 24 hours are free
 
-### Product Development
+## Technologies we detect
 
-- **Integration Planning**: Understand what technologies to integrate with
-- **Technology Research**: Stay updated on industry technology trends
-- **Competitive Intelligence**: Monitor competitor technology choices
+- **Web**: React, Vue.js, Angular, jQuery
+- **CMS & e-commerce**: WordPress, Drupal, Shopify, WooCommerce, Magento
+- **Analytics & marketing**: Google Analytics, HubSpot, Mailchimp, Google Tag Manager
+- **Infrastructure**: AWS, Google Cloud, Cloudflare, Nginx, Apache
+- **Payments**: Stripe, PayPal, Square
 
-## Technology Categories Detected
+## Integrations
 
-The Actor can detect technologies across various categories:
-
-### Web Technologies
-
-- **Frontend Frameworks**: React, Vue.js, Angular
-- **Backend Frameworks**: Node.js, Django, Ruby on Rails
-- **JavaScript Libraries**: jQuery, Lodash, Moment.js
-
-### Analytics & Marketing
-
-- **Web Analytics**: Google Analytics, Adobe Analytics
-- **Marketing Tools**: Mailchimp, HubSpot, Salesforce
-- **Tag Management**: Google Tag Manager, Adobe Launch
-
-### Infrastructure & DevOps
-
-- **Cloud Providers**: AWS, Google Cloud, Azure
-- **CDN**: Cloudflare, AWS CloudFront
-- **Web Servers**: Nginx, Apache, IIS
-
-### E-commerce & CMS
-
-- **E-commerce Platforms**: Shopify, WooCommerce, Magento
-- **Content Management**: WordPress, Drupal, Joomla
-- **Payment Processing**: Stripe, PayPal, Square
-
-## Data Views
-
-The Actor provides specialized data views:
-
-### Overview View
-
-Quick summary showing domain, technology, category, subcategory, confidence, and pricing
-
-### Detailed View
-
-Comprehensive view with all technology data, descriptions, and technical details
-
-### Technologies by Category View
-
-Organized view grouping technologies by their main categories for easier analysis
-
-## Resources & Documentation
-
-### API Documentation
-
-- [Tomba API Docs](https://docs.tomba.io/introduction) - Complete API reference
-- [Technology Finder Endpoint](https://docs.tomba.io/api/domain#technology) - Specific technology documentation
-- [Authentication Guide](https://app.tomba.io/api) - Get your API keys
-- [Pricing & Limits](https://tomba.io/pricing) - Understand rate limits and costs
-
-### Rate Limiting
-
-- Tomba limits to **150 requests per minute**
-- Actor automatically handles rate limiting with delays
-- Large domain lists may take time to complete
-
-### Cost Considerations
-
-- Each domain analyzed = 1 Tomba API request
-- Monitor your Tomba usage dashboard
-- Consider Tomba's pricing tiers for volume usage
+Run it on a schedule, call it from the Apify API, or connect it to Zapier, Make, Google Sheets, HubSpot, Slack and hundreds of other apps with [Apify integrations](https://docs.apify.com/platform/integrations). Webhooks let you trigger your own workflow as soon as a run finishes.
 
 ## FAQ
 
-### General Questions
+**Do I need a Tomba account or API key?**
+No. Everything is built in. You only pay the per-domain price on Apify.
 
-**Q: What is technology detection?**
-A: Technology detection analyzes a website domain to identify the tools, frameworks, services, and technologies being used, including web technologies, analytics tools, marketing platforms, and infrastructure services.
+**How much does it cost?**
+$0.00312 per domain with results ($3.12 per 1,000). Domains with no results, errors and cached lookups are free.
 
-**Q: What types of technologies can be detected?**
-A: The service identifies web frameworks, CMS platforms, analytics tools, marketing automation, e-commerce platforms, CDN services, hosting providers, and many other technology categories.
+**How many domains can I analyze in one run?**
+Up to 1,000 per run, processed in parallel. There is no rate limit.
 
-**Q: How accurate is technology detection?**
-A: Detection accuracy is typically 85-95% for commonly used technologies. Some technologies may be harder to detect if they're custom-built or configured to hide their signatures.
+**What domain format should I use?**
+Anything works: `stripe.com`, `www.stripe.com` or `https://stripe.com/pricing`. We clean it up and remove duplicates.
 
-### Technical Questions
+**What if my run is interrupted?**
+It picks up where it stopped. Domains already processed are not charged again.
 
-**Q: How many domains can I analyze at once?**
-A: You can process up to 1000 domains per run. For optimal performance, analyze 20-50 domains per batch.
+**Why are some technologies missing?**
+Custom-built or hidden tools leave no public signature, so they can't be detected. Popular technologies are detected reliably.
 
-**Q: What domain formats should I use?**
-A: Use clean domain names like "stripe.com" or "example.org". Don't include protocols (http/https) or subdomains unless specifically needed.
-
-**Q: What if a domain uses custom or unknown technologies?**
-A: Custom or very new technologies might not be detected. The service focuses on widely-used, recognizable technology signatures.
-
-### Business Applications
-
-**Q: How can this help with sales targeting?**
-A: Technology stacks help qualify prospects, tailor sales messaging, identify integration opportunities, and understand technical sophistication levels.
-
-**Q: Is this useful for competitive analysis?**
-A: Yes! Analyze competitor technology choices to understand their strategies, identify trends, and find differentiation opportunities.
-
-**Q: Can I use this for partnership opportunities?**
-A: Absolutely! Identify companies using complementary technologies to find potential integration partners or customers.
-
-## Keywords
-
-technology stack, tech finder, website technology, domain analysis, technology detection, competitive intelligence, tech stack analysis, software discovery, tech research, developer tools, website analysis, technology insights
+**How do I limit what I spend?**
+Set **Maximum cost per run** before you start. The Actor stops as soon as the limit is reached.
 
 ## Support
 
-If you need any help, have questions, or encounter any issues while using Tomba.io, please don't hesitate to reach out to our support team. You can contact us via:
+Questions or feedback? We're happy to help:
 
 - **Email**: support@tomba.io
-- **Live chat**: Available on the Tomba.io website during business hours
-
-## Contributing
-
-We welcome contributions to improve this actor. Please feel free to submit issues, feature requests, or pull requests to help make this tool even better for the community.
+- **Live chat**: on [tomba.io](https://tomba.io) during business hours
+- **Issues**: use the **Issues** tab on this Actor's page
 
 ## About Tomba
 
-Founded in 2020, Tomba prides itself on being the most reliable, accurate, and in-depth source of email address data available anywhere. We process terabytes of data to produce our Email finder API.
+Founded in 2020, [Tomba](https://tomba.io) is a B2B data platform for finding, verifying and enriching business contacts. Our Email Finder, Domain Search and Email Verifier help sales and marketing teams reach the right people.
 
 ![Tomba Logo](https://tomba.io/logo.png)
